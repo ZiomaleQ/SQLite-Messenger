@@ -9,9 +9,11 @@ inputForm.onsubmit = function (event) {
   let hour = `${date.getHours()}:${date.getMinutes()}`;
   let day = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
 
-  document.forms[0][1].value = ""
+  if (messInput.value.trim().length === 0) return
 
   socket.emit('new message', nickInput.value, day, hour, messInput.value)
+
+  messInput.value = ""
 };
 
 socket.on('connect', () => {
