@@ -12,7 +12,6 @@ http.listen(3000);
 // init sqlite db
 var fs = require('fs');
 var dbFile = './.data/sqlites.db';
-var exists = fs.existsSync(dbFile);
 
 const db = new Sequelize({
   dialect: 'sqlite',
@@ -48,33 +47,33 @@ const Messages = db.define('messagesList', {
 
 Messages.sync();
 
-io.on('connection', function(socket){
-  socket.on('new message', function(nick, day, hour, mess){
+io.on('connection', function (socket) {
+  socket.on('new message', function (nick, day, hour, mess) {
     Messages.count().then(num => {
-    Messages.create({
-      id: num,
-      nick: nick,
-      day: day,
-      hour: hour,
-      mess: mess
-    });
-    Messages.sync();
-    io.emit('new message', nick, day, hour, mess);
+      Messages.create({
+        id: num,
+        nick: nick,
+        day: day,
+        hour: hour,
+        mess: mess
+      });
+      Messages.sync();
+      io.emit('new message', nick, day, hour, mess);
     })
   });
 });
 
-app.get('/', function(request, response) {
+app.get('/', function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-app.get('/getMessages', function(request, response) {
+app.get('/getMessages', function (request, response) {
   Messages.findAll().then(mess => { response.send(mess) });
 });
 
 app.get('/delMess', (request, response) => {
   let params = request.query;
-  if(params.id !== undefined){
+  if (params.id !== undefined) {
     Messages.destroy({
       where: {
         id: params.id
@@ -87,7 +86,7 @@ app.get('/delMess', (request, response) => {
 
 app.get('/sendMess', (request, response) => {
   let params = request.query;
-  if(params.platform == 'pc'){
+  if (params.platform == 'pc') {
     response.redirect('./..');
   }
 })

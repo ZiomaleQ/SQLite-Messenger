@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>SQLite Messenger</title>
-    <script src="../socket.io.js"></script>
-    <meta name="description" content="A cool thing made with Glitch">
-    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/style.css">
-    
-    <!-- import the webpage's client-side javascript file -->
-    <script src="/client.js" defer></script>
-  </head>
-  <body>
-    <div id="messages-pane"><ul id="messages"></ul></div>
-    <div id="mess-bar">
-    <center>
-      <form>
-        <input id="nick" name="nick" type="text" maxlength="20" placeholder="Nick">
-        <input id="mess" name="mess" type="text" placeholder="Wiadomość">
-        <button type="submit" id="send-mess">Wyślij</button>
-      </form>
-    </center>
-    </div>
-  </body>
+<head>
+  <title>SQLite Messenger</title>
+  <script src="../socket.io.js"></script>
+  <meta name="description" content="A cool thing made with Glitch">
+  <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- import the webpage's stylesheet -->
+  <link rel="stylesheet" href="/style.css">
+
+  <!-- import the webpage's client-side javascript file -->
+  <script src="/client.js" defer></script>
+</head>
+
+<body>
+  <div id="messages-pane">
+    <ul id="messages"></ul>
+  </div>
+  <div id="mess-bar">
+    <form autocomplete="off">
+      <input id="nick" name="nick" type="text" maxlength="20" placeholder="Nick">
+      <input id="mess" name="mess" type="text" placeholder="Wiadomość">
+      <button type="submit" id="send-mess">Wyślij</button>
+    </form>
+  </div>
+</body>
+
 </html>
